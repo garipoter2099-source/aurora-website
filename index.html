@@ -68,7 +68,6 @@
       padding: 0 24px;
     }
 
-    /* УВЕЛИЧЕННЫЙ ЛОГОТИП */
     .logo {
       font-size: 18px;
       font-weight: 600;
@@ -122,6 +121,7 @@
       border: 1px solid var(--border);
       border-radius: 4px;
       transition: all 0.2s ease;
+      display: inline-block;
     }
 
     .btn-donate:hover {
@@ -211,6 +211,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      text-decoration: none;
     }
 
     .btn-primary:hover {
@@ -452,99 +453,6 @@
       color: var(--text-muted);
     }
 
-    /* MODAL DONATE */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-    }
-
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal {
-      background: #000;
-      border: 1px solid var(--border);
-      padding: 32px;
-      width: 100%;
-      max-width: 400px;
-      border-radius: 6px;
-      position: relative;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      color: var(--text-muted);
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .modal-close:hover {
-      color: var(--text);
-    }
-
-    .modal-title {
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 24px;
-    }
-
-    .amount-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-
-    .btn-amount {
-      border: 1px solid var(--border);
-      padding: 10px 0;
-      font-size: 13px;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
-
-    .btn-amount:hover, .btn-amount.active {
-      border-color: var(--text);
-      background: #111;
-    }
-
-    .payment-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .btn-pay {
-      width: 100%;
-      border: 1px solid var(--border);
-      padding: 12px;
-      font-size: 13px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: background 0.2s ease;
-    }
-
-    .btn-pay:hover {
-      background: #111;
-      border-color: var(--text-muted);
-    }
-
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .features-grid {
@@ -604,7 +512,8 @@
           <span>.</span>
           <span class="lang-opt" id="lang-en">EN</span>
         </div>
-        <button class="btn-donate" id="open-donate" data-i18n="btn_donate">Донат</button>
+        <!-- ПРЯМАЯ ССЫЛКА НА KO-FI -->
+        <a href="https://donatello.to/AuroraTechnologies" target="_blank" rel="noopener" class="btn-donate" data-i18n="btn_donate">Донат</a>
       </div>
     </div>
   </header>
@@ -623,9 +532,10 @@
           Браузер Auroras создан для защиты вашего цифрового пространства. Полная изоляция от систем слежения, нулевой сбор метрик и свобода от корпоративного контроля.
         </p>
         <div class="action-group">
-          <button class="btn-primary btn-download">
+          <!-- ПРЯМОЕ СКАЧИВАНИЕ ФАЙЛА auroras_browser.py -->
+          <a href="auroras_browser.py" download="auroras_browser.py" class="btn-primary">
             <span data-i18n="btn_download">Скачать для Python</span>
-          </button>
+          </a>
           <span class="action-note" data-i18n="download_req">Требуется PyQt6</span>
         </div>
       </div>
@@ -671,9 +581,9 @@
           </p>
           <div class="product-footer">
             <span class="python-badge">In Python</span>
-            <button class="btn-primary btn-download">
+            <a href="auroras_browser.py" download="auroras_browser.py" class="btn-primary">
               <span data-i18n="btn_download_file">Download File</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -718,25 +628,6 @@
     </div>
   </footer>
 
-  <!-- DONATE MODAL -->
-  <div class="modal-overlay" id="donate-modal">
-    <div class="modal">
-      <button class="modal-close" id="close-donate">&times;</button>
-      <div class="modal-title" data-i18n="modal_title">Поддержать проект</div>
-      <div class="amount-grid">
-        <button class="btn-amount">5$</button>
-        <button class="btn-amount active">10$</button>
-        <button class="btn-amount">25$</button>
-        <button class="btn-amount">50$</button>
-      </div>
-      <div class="payment-methods">
-        <button class="btn-pay">Apple Pay</button>
-        <button class="btn-pay">Google Pay</button>
-        <button class="btn-pay">PayPal</button>
-      </div>
-    </div>
-  </div>
-
   <!-- SCRIPT -->
   <script>
     const i18n = {
@@ -764,8 +655,7 @@
         doc_menu_launch: "Запуск скрипта",
         doc_title: "Установка и запуск (v0.1)",
         doc_desc: "Инструкции по развертыванию бета-версии браузера Auroras в среде Python.",
-        doc_launch_desc: "Запуск исходного файла браузера из терминала:",
-        modal_title: "Поддержать проект"
+        doc_launch_desc: "Запуск исходного файла браузера из терминала:"
       },
       en: {
         nav_home: "Home",
@@ -791,8 +681,7 @@
         doc_menu_launch: "Run Script",
         doc_title: "Installation & Setup (v0.1)",
         doc_desc: "Instructions for deploying the Auroras browser beta in a Python environment.",
-        doc_launch_desc: "Running the browser core script from your terminal:",
-        modal_title: "Support the Project"
+        doc_launch_desc: "Running the browser core script from your terminal:"
       }
     };
 
@@ -837,57 +726,6 @@
 
     langRu.addEventListener('click', () => setLanguage('ru'));
     langEn.addEventListener('click', () => setLanguage('en'));
-
-    const modal = document.getElementById('donate-modal');
-    const openBtn = document.getElementById('open-donate');
-    const closeBtn = document.getElementById('close-donate');
-    const amountBtns = document.querySelectorAll('.btn-amount');
-
-    openBtn.addEventListener('click', () => modal.classList.add('open'));
-    closeBtn.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('open');
-    });
-
-    amountBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        amountBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-
-    document.querySelectorAll('.btn-download').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const pythonCode = `# Auroras Browser v0.1 Core
-import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtCore import QUrl
-
-class AurorasBrowser(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Auroras Browser v0.1")
-        self.setGeometry(100, 100, 1200, 800)
-        self.browser = QWebEngineView()
-        self.browser.setUrl(QUrl("https://duckduckgo.com"))
-        self.setCentralWidget(self.browser)
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = AurorasBrowser()
-    window.show()
-    sys.exit(app.exec())
-`;
-        const blob = new Blob([pythonCode], { type: 'text/x-python' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'auroras_browser.py';
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-    });
 
     function copyCode(button) {
       const code = button.nextElementSibling.innerText;
